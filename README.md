@@ -79,10 +79,19 @@ The solution follows Infrastructure as Code (IaC) principles, allowing the entir
 ```text
 terraform-serverless-file-metadata/
 │
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── terraform/
+│   ├── provider.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── s3.tf
+│   ├── dynamodb.tf
+│   ├── iam.tf
+│   ├── archive.tf
+│   ├── lambda.tf
+│   ├── apigateway.tf
+│   ├── website.tf
+│   ├── frontend.tf
+│   └── cloudfront.tf
 │
 ├── lambda/
 │   ├── UploadFileLambda.py
@@ -91,18 +100,14 @@ terraform-serverless-file-metadata/
 │   ├── DownloadFileLambda.py
 │   └── DeleteFileLambda.py
 │
-├── provider.tf
-├── variables.tf
-├── outputs.tf
-├── s3.tf
-├── dynamodb.tf
-├── iam.tf
-├── archive.tf
-├── lambda.tf
-├── apigateway.tf
-├── website.tf
-├── frontend.tf
-├── cloudfront.tf
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── .github/
+│   └── workflows/
+│       └── terraform.yml
 │
 ├── README.md
 ├── LICENSE
@@ -134,9 +139,14 @@ Before deploying, ensure you have:
 ### Clone Repository
 
 ```bash
-git clone https://github.com/<your-username>/Terraform-Serverless-File-Metadata.git
+git clone https://github.com/<your-username>/Terraform-Project.git
+cd Terraform-Project
+```
 
-cd Terraform-Serverless-File-Metadata
+### Navigate to Terraform Folder
+
+```bash
+cd terraform
 ```
 
 ### Initialize Terraform
@@ -162,6 +172,7 @@ terraform plan
 ```bash
 terraform apply
 ```
+
 
 Type:
 
@@ -193,6 +204,34 @@ terraform destroy
 ```
 
 ---
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions to automate Terraform validation and planning.
+
+### Workflow Steps
+
+1. Checkout repository code
+2. Configure AWS credentials securely using GitHub Secrets
+3. Initialize Terraform
+4. Validate Terraform configuration
+5. Generate Terraform execution plan
+
+### GitHub Actions
+
+Workflow file:
+
+```text
+.github/workflows/terraform.yml
+```
+
+### Required Secrets
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+
+The pipeline runs automatically whenever code is pushed to the `main` branch.
+
 
 ## Security Features
 
