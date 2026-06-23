@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Serverless File Metadata Extractor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Serverless File Metadata Extractor</h1>
+
+        <div class="upload-section">
+            <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+
+            <button onclick="uploadFile()">Upload File</button>
+
+            <button onclick="loadFiles()">Load Files</button>
+
+            <p class="file-info">
+                Allowed file types: PDF, DOC, DOCX, JPG, JPEG, PNG
+            </p>
+        </div>
+
+        <table id="fileTable">
+
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Content Type</th>
+                    <th>File Size (Bytes)</th>
+                    <th>Upload Time</th>
+                    <th>Download</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
