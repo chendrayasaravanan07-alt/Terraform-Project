@@ -1,5 +1,33 @@
-aws s3 sync frontend/ s3://web-host172-tf --delete
+name: Frontend Deployment
 
-aws cloudfront create-invalidation \
-  --distribution-id E2Q72WVOJHOW24 \
-  --paths "/*"
+on:
+  push:
+    paths:
+      - 'frontend/**'
+    branches:
+      - main
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Upload Frontend to S3
+        run: |
+          aws s3 sync frontend/ s3://web-host172-tf --delete
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E2Q72WVOJHOW24 \
+            --paths "/*"
