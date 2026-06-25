@@ -16,3 +16,7 @@ output "dynamodb_table" {
 output "cloudfront_domain" {
   value = aws_cloudfront_distribution.frontend.domain_name
 }
+
+output "test" {
+  value = "state-working"
+}
