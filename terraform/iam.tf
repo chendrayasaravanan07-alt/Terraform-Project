@@ -27,7 +27,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 
 resource "aws_iam_policy" "lambda_custom_policy" {
 
-  name = "serverless-file-policy"
+  name = "serverless-file-policy-tf"
 
   policy = jsonencode({
 
