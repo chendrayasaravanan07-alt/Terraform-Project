@@ -18,5 +18,5 @@ output "cloudfront_domain" {
 }
 
 output "test" {
-  value = "state-working"
+  value = "state-working#"
 }
