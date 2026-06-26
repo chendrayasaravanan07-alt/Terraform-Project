@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     items = response['Items']
 
     return {
-        'statusCode': 200,
+        'statusCode': 200,//status code 200 means the request was successful
         'headers': {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': '*',
